@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+[x-cloak] {
+    display: none;
+}
+input:read-only {
+    background-color: #f0f0f0; /* Light gray background */
+    color: #999;              /* Gray text color */
+    border: 1px solid #ccc;   /* Light gray border */
+    cursor: not-allowed;      /* Show a not-allowed cursor */
+}
+a[active="active"] {
+    --tw-bg-opacity: 1;
+    background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+}
+.dark a[active="active"] {
+    --tw-bg-opacity: 1;
+    background-color: rgb(31 41 55 / var(--tw-bg-opacity));
+}
+input:read-only {
+    background-color: transparent;
+    color: #999;
+    border: none;
+    cursor: no-drop;
+}
+.peer:checked~.dark\:peer-checked\:bg-secondary-700:is(.dark *) {
+    --tw-bg-opacity: 1;
+    background-color: rgb(10 60 120 / var(--tw-bg-opacity)) !important;
+}
+body {
+    background-image: linear-gradient(118deg, #063661 0%, rgba(43, 78, 136, 0.67) 100%), url(https://www.eazyfindmachinery.co.za/wp-content/uploads/2024/10/Eazy-Find-Machinery-2.png) !important;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: calc(100vh - 113px);
+}
+html {
+    scroll-behavior: smooth;
+    min-height:100vh;
+}
+.min-h-screen {
+    min-height: calc(100vh - 113px);
+}
+.trix-button-group--file-tools {
+    display: none !important;
+}
+
+/*.soft-scrollbar::-webkit-scrollbar {*/
+/*    width: 30px !important;*/
+/*    background-color: rgb(226 232 240);*/
+/*}*/
+
+
