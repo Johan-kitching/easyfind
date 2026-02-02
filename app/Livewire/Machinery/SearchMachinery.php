@@ -157,6 +157,14 @@ class SearchMachinery extends Component
         }
     }
 
+    public function setUserLocation($latitude, $longitude)
+    {
+        $this->current_latitude = $latitude;
+        $this->current_longitude = $longitude;
+        $this->current_location = "Your Shared Location is: " . $latitude . ", " . $longitude;
+        $this->getSearchResults();
+    }
+
     public function updated($fields)
     {
 

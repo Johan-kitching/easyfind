@@ -5,26 +5,27 @@ namespace App\Livewire;
 use App\Models\Transporter;
 use Livewire\Component;
 
+use Livewire\Attributes\Reactive;
+
 class TransporterResult extends Component
 {
 
+    #[Reactive]
     public $transporter;
     public $distance;
-    public $unavailable;
 
     public function mount($transporter, $distance): void
     {
         $this->transporter = Transporter::find($transporter);
         $this->distance = $distance;
-        $this->unavailable = $this->transporter->availabilities()
-            ->whereRaw("`start_date` <= now() and `end_date` >= now()")
-            ->get();
-//        dump($this->transporter->type);
-
     }
+
     public function render()
     {
-//        dd($this->transporter);
-        return view('livewire.transporter-result');
+        $unavailable = $this->transporter->availabilities()
+            ->whereRaw("`start_date` <= now() and `end_date` >= now()")
+            ->get();
+            
+        return view('livewire.transporter-result', ['unavailable' => $unavailable]);
     }
 }

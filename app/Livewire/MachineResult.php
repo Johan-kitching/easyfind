@@ -5,23 +5,22 @@ namespace App\Livewire;
 use App\Models\Machinery;
 use Livewire\Component;
 
+use Livewire\Attributes\Reactive;
+
 class MachineResult extends Component
 {
 
+    #[Reactive]
     public Machinery $machinery;
-    public $unavailable;
 
-    public function mount(Machinery $machinery)
+    public function render()
     {
-        $this->machinery = $machinery->loadMissing('photos');
-        $this->unavailable = $machinery->availabilities()
+        $unavailable = $this->machinery->availabilities()
             ->whereRaw("`start_date` <= now() and `end_date` >= now()")
             ->get();
 
-    }
-    public function render()
-    {
-//        dd($this->machinery);
-        return view('livewire.machine-result');
+        return view('livewire.machine-result', [
+            'unavailable' => $unavailable
+        ]);
     }
 }

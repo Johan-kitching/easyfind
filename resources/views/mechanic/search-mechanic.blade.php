@@ -6,11 +6,11 @@
     <div class="flex items-end w-full">
         @if(!is_null($types))
         <div class="w-fit min-w-40">
-            <x-select id="type" name="type" wire:model.live="type" :options="$types" option-value="id" option-label="name" label="Type" :clearable="false" x-on:focus="checkLocationSearchSettings()" placeholder="All"/>
+            <x-select id="type" name="type" wire:model.live="type" :options="$types" option-value="id" option-label="name" label="Type" :clearable="false" placeholder="All"/>
         </div>
         @endif
         <div class="w-full">
-            <x-input placeholder="search" wire:model.live.debounce.300ms="search" x-on:click="checkLocationSearchSettings()">
+            <x-input placeholder="search" wire:model.live.debounce.300ms="search">
                 <x-slot name="append">
                     <x-button
                         class="h-full"
@@ -35,23 +35,20 @@
     @script
     <script language="JavaScript">
 
-        let id;
         let target;
         let options;
+        let watchId;
 
         function success(pos) {
-            @this.
-            set('current_location', "Your Shared Location is: " + pos.coords.latitude + ", " + pos.coords.longitude);
-            @this.
-            set('current_latitude', pos.coords.latitude);
-            @this.
-            set('current_longitude', pos.coords.longitude);
+            @this.setUserLocation(pos.coords.latitude, pos.coords.longitude);
         }
 
         function error(err) {
             console.error(`ERROR(${err.code}): ${err.message}`);
-            @this.
-            set('current_location', "Using {{$city}} as your current location");
+            // Check if we already have a fallback location message set
+            if (!@this.get('current_location') || @this.get('current_location').includes('Using')) {
+                 @this.set('current_location', "Using {{$city}} as your current location");
+            }
         }
 
         target = {
@@ -65,13 +62,14 @@
             maximumAge: 0,
         };
 
-        window.checkLocationSearchSettings = function () {
-            if (@this.get('current_latitude') == null)
-            {
-                id = navigator.geolocation.watchPosition(success, error, options);
+        // Start watching immediately
+        document.addEventListener('livewire:initialized', () => {
+             if (navigator.geolocation) {
+                watchId = navigator.geolocation.watchPosition(success, error, options);
+            } else {
+                console.error("Geolocation is not supported by this browser.");
             }
-            navigator.geolocation.watchPosition(success, error, options);
-        };
+        });
     </script>
     @endscript
 </div>
