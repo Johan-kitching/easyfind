@@ -3,7 +3,8 @@
    # Force SSL
    RewriteCond %{HTTPS} !=on
    RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-   # Remove public folder form URL
-   RewriteCond %{REQUEST_URI} !^/storage
+   # Remove public folder from URL
+   RewriteCond %{REQUEST_URI} !^/public/
+   RewriteCond %{REQUEST_URI} !^/storage/
    RewriteRule ^(.*)$ public/$1 [L]
 </IfModule>

@@ -64,7 +64,7 @@
                     // $wire.dispatch('confirmUpdateMechanic',{id: vid, address: address, city: city, lat: lat, long: lng});
                     // Livewire.dispatch('confirmUpdateMechanic', {id: vid, address: address, city: city, lat: lat, long: lng});
                     // Livewire.dispatch('openModal',{component:'confirmUpdateMechanic', arguments: {id: vid, address: address, city: city, lat: lat, long: lng}});
-                    Livewire.dispatch('openModal', {component: 'Mechanic.UpdateMechanicLocationModal', arguments: {mechanic:parseInt(vid), address: address, city: city, address_latitude: lat, address_longitude: lng}});
+                    Livewire.dispatch('openModal', {component: 'Mechanic.UpdateMechanicLocationModal', arguments: [parseInt(vid), address, city, lat, lng]});
                     console.log({id: vid, address: address, city: city, lat: lat, long: lng});
                 }
             });

@@ -44,7 +44,7 @@
                             <div><span class="dark:text-gray-500 text-gray-400">Address:</span> <br>{{$machinery->user->address}}</div>
                         @endif
                         @if($machinery->address)
-                            <div><span class="dark:text-gray-500 text-gray-400">Current Address:</span> <br>{{$machinery->user->address}}</div>
+                            <div><span class="dark:text-gray-500 text-gray-400">Current Address:</span> <br>{{$machinery->address}}</div>
                         @endif
                         @if($machinery->description)
                             <div><span class="dark:text-gray-500 text-gray-400">Description:</span> <br>{{$machinery->description}}</div>

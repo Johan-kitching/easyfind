@@ -107,7 +107,7 @@
                             data-te-modal-dismiss
                             data-te-ripple-init
                             data-te-ripple-color="light"
-                            @click="$dispatch('closeModal')">
+                            wire:click="$dispatch('closeModal')">
                             Close
                         </button>
                         <button

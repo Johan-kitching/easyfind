@@ -1,6 +1,6 @@
 <div class="flex flex-wrap p-5 gap-4 justify-center">
     <div id="currentLocation">
-{{--        {{$current_location}}--}}
+        Current Location: {{$current_location}}
     </div>
     <div class="flex items-end w-full">
         <div class="w-fit min-w-40">

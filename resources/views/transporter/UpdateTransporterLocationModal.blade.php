@@ -51,19 +51,20 @@
                                                     //
                                                     // const selectedPlaceInfo = document.createElement("pre");
                                                     // selectedPlaceInfo.textContent = "";
-                                                    document.body.appendChild(selectedPlaceInfo);
+                                                    // document.body.appendChild(selectedPlaceInfo);
 
                                                     // Add the place_changed listener, and display the results.
                                                     autocomplete.addListener("place_changed", () => {
                                                         const place = autocomplete.getPlace();
-                                                        Object.keys(place.address_components).forEach(function (key){
-                                                            if(place.address_components[key].types[0]=='locality') {
-                                                                const cityValue = place.address_components[key].long_name;
-                                                                console.log(cityValue);
-                                                                @this.set('city', cityValue);
-                                                            }
-                                                        });
-                                                        // console.log(place);
+                                                        if (place.address_components && Array.isArray(place.address_components)) {
+                                                            place.address_components.forEach(function (component) {
+                                                                if (Array.isArray(component.types) && component.types[0] === 'locality') {
+                                                                    const cityValue = component.long_name;
+                                                                    console.log(cityValue);
+                                                                    @this.set('city', cityValue);
+                                                                }
+                                                            });
+                                                        }
                                                         const latitude = place.geometry.location?.lat();
                                                         const longitude = place.geometry.location?.lng();
                                                         @this.set('address', place.formatted_address);

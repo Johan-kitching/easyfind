@@ -51,7 +51,7 @@
                                                     //
                                                     // const selectedPlaceInfo = document.createElement("pre");
                                                     // selectedPlaceInfo.textContent = "";
-                                                    document.body.appendChild(selectedPlaceInfo);
+                                                    // document.body.appendChild(selectedPlaceInfo);
 
                                                     // Add the place_changed listener, and display the results.
                                                     autocomplete.addListener("place_changed", () => {

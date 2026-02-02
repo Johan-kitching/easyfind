@@ -5,6 +5,7 @@ namespace App\Livewire\Operator;
 use AllowDynamicProperties;
 use App\Actions\Fortify\PasswordValidationRules;
 use App\Models\Equipment;
+use App\Models\Machinery;
 use App\Models\Transporter;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -80,12 +81,12 @@ use LivewireUI\Modal\ModalComponent;
         ]);
         if(!empty($this->equipment)){
             foreach ($this->equipment as $equipment){
-                Equipment::find($equipment)->update(['operator_id'=>$this->user->id]);
+                Machinery::find($equipment)->first()->update(['operator_id'=>$this->user->id]);
             }
         }
         if(!empty($this->transporter)){
             foreach ($this->transporter as $transporter){
-                Transporter::find($transporter)->update(['operator_id'=>$this->user->id]);
+                Transporter::find($transporter)->first()->update(['operator_id'=>$this->user->id]);
             }
         }
 

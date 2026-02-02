@@ -49,7 +49,7 @@ class Edit extends ModalComponent
         $this->locations = Auth::user()->address()->get();
         $this->operators = Auth::user()->currentTeamMembers()->get()->fresh();
         $this->category = $machinery->type->category;
-        $this->type = $machinery->type->type;
+        $this->type = $machinery->machinery_type_id;
         $this->model = $machinery->type->id;
         $this->categories = $this->getCategories();
         $this->types = $this->getTypes();
@@ -66,7 +66,7 @@ class Edit extends ModalComponent
     public function updated($fields): void
     {
         if ($fields == 'category') {
-            $this->type = '';
+//            $this->type = '';
             $this->types = $this->getTypes();
         }
 

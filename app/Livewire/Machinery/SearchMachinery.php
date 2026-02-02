@@ -205,7 +205,7 @@ class SearchMachinery extends Component
         if (!is_null($this->search)) {
             $results->where(function ($results) {
                 $results->where('description', 'like', "%$this->search%", 'or');
-                $results->where('model', 'like', "%$this->search%", 'or');
+//                $results->where('model', 'like', "%$this->search%", 'or');
             });
         }
         if (!is_null($this->category) && $this->category != 'All') {

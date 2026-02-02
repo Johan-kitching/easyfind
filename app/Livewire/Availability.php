@@ -29,7 +29,7 @@ class Availability extends ModalComponent
     public $endDate;
     public $rules = [
         'startDate' => ['required','date'],
-        'endDate' => ['required','date','after:startDate'],
+        'endDate' => ['required','date'],
     ];
     public $listeners = ['Availability'];
 
