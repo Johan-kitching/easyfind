@@ -118,16 +118,12 @@ class SearchTransporter extends Component
     public function getSearchResults(): void
     {
             if (is_null($this->current_latitude) || is_null($this->current_longitude)) {
-                $results = Transporter::leftJoin('users', 'users.id', '=', 'transporters.user_id')
-                    ->leftJoin('transporter_types', 'transporter_types.id', '=', 'transporters.transporter_type_id')
-                    ->select(
-                        ['transporters.id',  'transporters.address_latitude', 'transporters.address_longitude', 'transporters.description as description']
-                    );
+                $results = Transporter::with(['type', 'photos'])
+                    ->select('transporters.*');
             } else {
-                $results = Transporter::leftJoin('users', 'users.id', '=', 'transporters.user_id')
-                    ->leftJoin('transporter_types', 'transporter_types.id', '=', 'transporters.transporter_type_id')
+                $results = Transporter::with(['type', 'photos'])
                     ->select(
-                        ['transporters.id',  'transporters.address_latitude', 'transporters.address_longitude', 'transporters.description as description', DB::raw("
+                        ['transporters.*', DB::raw("
             (
                 6371 * acos(
                     cos(radians($this->current_latitude))

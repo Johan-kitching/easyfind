@@ -27,4 +27,4 @@
             {{ __('View') }}
         </x-button>
     </x-slot>
-</x-card>
+</x-card> 

@@ -22,7 +22,7 @@
         <div class="text-xs justify-center grid">{{Str::of($transporter->address)->words(5, ' ...')}}</div>
     </div>
     <x-slot name="footer" class="flex gap-4 items-start justify-end text-blue-500 place-content-between place-items-center" style="place-content: space-between; place-items: center;">
-        <div>{{round($distance,2)}}Km away</div>
+        <div>{{round($transporter->distance,2)}}Km away</div>
         <x-button wire:click="dispatch('openModal', {component: 'Transporter.view', arguments: {{ json_encode([$transporter->id]) }} })">
             {{ __('View') }}
         </x-button>

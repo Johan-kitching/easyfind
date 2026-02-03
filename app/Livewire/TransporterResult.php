@@ -11,14 +11,7 @@ class TransporterResult extends Component
 {
 
     #[Reactive]
-    public $transporter;
-    public $distance;
-
-    public function mount($transporter, $distance): void
-    {
-        $this->transporter = Transporter::find($transporter);
-        $this->distance = $distance;
-    }
+    public Transporter $transporter;
 
     public function render()
     {

@@ -117,14 +117,12 @@ class SearchMechanic extends Component
     public function getSearchResults(): void
     {
             if (is_null($this->current_latitude) || is_null($this->current_longitude)) {
-                $results = Mechanic::leftJoin('users', 'users.id', '=', 'mechanics.user_id')
-                    ->select(
-                        ['mechanics.id', 'mechanics.name', 'mechanics.address_latitude', 'mechanics.address_longitude', 'mechanics.description as description']
-                    );
+                $results = Mechanic::with('type')
+                    ->select('mechanics.*');
             } else {
-                $results = Mechanic::leftJoin('users', 'users.id', '=', 'mechanics.user_id')
+                $results = Mechanic::with('type')
                     ->select(
-                        ['mechanics.id', 'mechanics.name', 'mechanics.address_latitude', 'mechanics.address_longitude', 'mechanics.description as description', DB::raw("
+                        ['mechanics.*', DB::raw("
             (
                 6371 * acos(
                     cos(radians($this->current_latitude))

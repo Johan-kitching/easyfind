@@ -27,7 +27,7 @@
     <div id="results" class="flex flex-wrap p-5 gap-4 justify-center min-h-[300px] content-center" wire:key="Results">
         @if(!is_null($results))
             @forelse($results as $result)
-                    <livewire:transporter-result :transporter="$result->id" :distance="$result->distance" wire:key="{{'transporter'.$type.$result->id}}"/>
+                    <livewire:transporter-result :transporter="$result" wire:key="{{'transporter'.$type.$result->id}}"/>
             @empty
                 Please redefine your search.
             @endforelse

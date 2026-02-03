@@ -11,14 +11,7 @@ class MechanicResult extends Component
 {
 
     #[Reactive]
-    public $mechanic;
-    public $distance;
-
-    public function mount($mechanic, $distance): void
-    {
-        $this->mechanic = Mechanic::find($mechanic);
-        $this->distance = $distance;
-    }
+    public Mechanic $mechanic;
 
     public function render()
     {
